@@ -12,6 +12,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RecipeInfoComponent } from './recipe-info/recipe-info.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AddRecipeComponent,
     ShoppingListComponent,
     CategoriesComponent,
-    FavoritesComponent
+    FavoritesComponent,
+    RecipeInfoComponent
   ],
   imports: [
     BrowserModule,
