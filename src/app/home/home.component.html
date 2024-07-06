@@ -1,2 +1,16 @@
 <h2>Home Page</h2>
 <p>Welcome to the Cooking App!</p>
+
+<h3>Popular Recipes</h3>
+<div class="row">
+    <div class="col mb-4" *ngFor="let recipe of popularRecipes">
+      <div class="card">
+        <img [src]="recipe.pictureUrl" [alt]="recipe.name" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">{{ recipe.name }}</h5>
+          <p class="card-text"><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
+          <p class="card-text"><strong>Instructions:</strong> {{ recipe.instructions }}</p>
+        </div>
+      </div>
+    </div>
+  </div>

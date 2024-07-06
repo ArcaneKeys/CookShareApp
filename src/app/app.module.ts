@@ -10,6 +10,8 @@ import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { FavoritesComponent } from './favorites/favorites.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,10 @@ import { FavoritesComponent } from './favorites/favorites.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
