@@ -1,2 +1,44 @@
-<h2>Add Recipe</h2>
-<p>Form to add new recipe will be displayed here.</p>
+<section class="recipe-form">
+  <h2 class="recipe-title">Dodaj Przepis</h2>
+  <form class="form-container">
+    <div class="form-content">
+      <div class="form-group">
+        <label for="recipe-name" class="form-label">Nazwa Przepisu</label>
+        <input type="text" id="recipe-name" class="form-input" required />
+      </div>
+      <div class="form-group">
+        <label for="preparation" class="form-label">Sposób Przygotowania</label>
+        <textarea id="preparation" class="form-textarea" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="calories" class="form-label">Kalorie (Kcal)</label>
+        <input type="number" id="calories" name="Kalorie" class="form-input" required />
+      </div>
+      <div class="form-group">
+        <label for="protein" class="form-label">Białko</label>
+        <input type="number" id="protein" name="Białko" class="form-input" required />
+      </div>
+      <div class="form-group">
+        <label for="carbs" class="form-label">Węglowodany</label>
+        <input type="number" id="carbs" name="Carbo" class="form-input" required />
+      </div>
+      <div class="form-group">
+        <label for="fat" class="form-label">Tłuszcze</label>
+        <input type="number" id="fat" name="Fat" class="form-input" required />
+      </div>
+      <div class="form-group">
+        <label for="ingredients" class="form-label">Składniki</label>
+        <input type="text" id="ingredients" name="Ingridents" class="form-input" required />
+      </div>
+    </div>
+    <div class="image-upload">
+      <label for="recipe-image" class="image-upload-label">Dodaj Zdjęcie</label>
+      <div class="image-preview">
+        <img loading="lazy" alt="Podgląd zdjęcia przepisu" src="https://cdn.builder.io/api/v1/image/assets%2Fadae120eb1ae4371a0bd579fad467915%2Fac7beb9945b642a2904bd0a2bbd0a9f9" class="preview-image" />
+        <input type="file" id="recipe-image" class="file-input" accept="image/*" />
+      </div>
+    </div>
+    <button type="submit" class="submit-button">Dodaj</button>
+  </form>
+</section>
+
