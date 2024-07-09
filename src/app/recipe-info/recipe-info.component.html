@@ -1,11 +1,22 @@
 <div class="col mb-4">
-    <div class="card">
-      <img [src]="recipe.pictureUrl" [alt]="recipe.name" class="card-img-top">
-      <div class="card-body">
-        <h5 class="card-title">{{ recipe.name }}</h5>
-        <p class="card-text"><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
-        <p class="card-text"><strong>Instructions:</strong> {{ recipe.instructions }}</p>
-      </div>
+  <div class="card">
+    <img [src]="recipe.pictureUrl" [alt]="recipe.name" class="card-img-top">
+    <div class="card-body">
+      <h5 class="card-title">{{ recipe.name }}</h5>
+      <p class="card-text"><strong>Ingredients:</strong></p>
+      <ul>
+        <li *ngFor="let ingredient of recipe.ingredients">
+          <img [src]="ingredient.iconUrl" alt="{{ ingredient.name }}" width="24" height="24">
+          {{ ingredient.name }}: {{ ingredient.quantity }} {{ ingredient.unit }}
+        </li>
+      </ul>
+      <p class="card-text"><strong>Instructions:</strong> {{ recipe.instructions }}</p>
+      <p class="card-text"><strong>Preparation Time:</strong> {{ recipe.preparationTime }} minutes</p>
+      <p class="card-text"><strong>Calories:</strong> {{ recipe.calories }}</p>
+      <p class="card-text"><strong>Protein:</strong> {{ recipe.protein }}g</p>
+      <p class="card-text"><strong>Carbs:</strong> {{ recipe.carbs }}g</p>
+      <p class="card-text"><strong>Fat:</strong> {{ recipe.fat }}g</p>
+      <p class="card-text"><strong>Categories:</strong> {{ recipe.categories.join(', ') }}</p>
     </div>
   </div>
-  
+</div>
