@@ -9,12 +9,19 @@ export interface Recipe {
     carbs: number;
     fat: number;
     ingredients: Ingredient[];
-    categories: string[];
-}
-
-export interface Ingredient {
+    categories: Category[];
+  }
+  
+  export interface Ingredient {
+    id: number;
     name: string;
     quantity: number;
     unit: string;
     iconUrl: string;
-}
+  }
+  
+  export interface Category {
+    id: number;
+    name: string;
+  }
+  
