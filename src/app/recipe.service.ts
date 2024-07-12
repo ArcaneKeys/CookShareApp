@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Recipe } from './models/recipe.model';
+import { Recipe, Ingredient, Category } from './models/recipe.model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +28,17 @@ export class RecipeService {
 
   deleteRecipe(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/recipes/${id}`);
+  }
+
+  getIngredients(): Observable<Ingredient[]> {
+    return this.http.get<{ingredients: Ingredient[]}>(`${this.apiUrl}/ingredients`).pipe(
+      map(response => response.ingredients)
+    );
+  }
+
+  getCategories(): Observable<Category[]> {
+    return this.http.get<{categories: Category[]}>(`${this.apiUrl}/categories`).pipe(
+      map(response => response.categories)
+    );
   }
 }

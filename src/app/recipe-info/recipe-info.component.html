@@ -16,7 +16,12 @@
       <p class="card-text"><strong>Protein:</strong> {{ recipe.protein }}g</p>
       <p class="card-text"><strong>Carbs:</strong> {{ recipe.carbs }}g</p>
       <p class="card-text"><strong>Fat:</strong> {{ recipe.fat }}g</p>
-      <p class="card-text"><strong>Categories:</strong> {{ recipe.categories.join(', ') }}</p>
+      <p class="card-text"><strong>Categories:</strong></p>
+      <ul>
+        <li *ngFor="let category of recipe.categories">
+          {{ category.name }}
+        </li>
+      </ul>
     </div>
   </div>
 </div>

@@ -1,44 +1,61 @@
 <section class="recipe-form">
   <h2 class="recipe-title">Dodaj Przepis</h2>
-  <form class="form-container">
+  <div *ngIf="alertMessage" class="alert alert-success" role="alert">
+    {{ alertMessage }}
+  </div>
+  <form class="form-container" (ngSubmit)="onSubmit()">
     <div class="form-content">
       <div class="form-group">
         <label for="recipe-name" class="form-label">Nazwa Przepisu</label>
-        <input type="text" id="recipe-name" class="form-input" required />
+        <input type="text" id="recipe-name" class="form-input" [(ngModel)]="recipe.name" name="name" required />
       </div>
       <div class="form-group">
         <label for="preparation" class="form-label">Sposób Przygotowania</label>
-        <textarea id="preparation" class="form-textarea" required></textarea>
+        <textarea id="preparation" class="form-textarea" [(ngModel)]="recipe.instructions" name="instructions" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="preparation-time" class="form-label">Czas Przygotowania (min)</label>
+        <input type="number" id="preparation-time" class="form-input" [(ngModel)]="recipe.preparationTime" name="preparationTime" required />
       </div>
       <div class="form-group">
         <label for="calories" class="form-label">Kalorie (Kcal)</label>
-        <input type="number" id="calories" name="Kalorie" class="form-input" required />
+        <input type="number" id="calories" class="form-input" [(ngModel)]="recipe.calories" name="calories" required />
       </div>
       <div class="form-group">
         <label for="protein" class="form-label">Białko</label>
-        <input type="number" id="protein" name="Białko" class="form-input" required />
+        <input type="number" id="protein" class="form-input" [(ngModel)]="recipe.protein" name="protein" required />
       </div>
       <div class="form-group">
         <label for="carbs" class="form-label">Węglowodany</label>
-        <input type="number" id="carbs" name="Carbo" class="form-input" required />
+        <input type="number" id="carbs" class="form-input" [(ngModel)]="recipe.carbs" name="carbs" required />
       </div>
       <div class="form-group">
         <label for="fat" class="form-label">Tłuszcze</label>
-        <input type="number" id="fat" name="Fat" class="form-input" required />
+        <input type="number" id="fat" class="form-input" [(ngModel)]="recipe.fat" name="fat" required />
       </div>
       <div class="form-group">
         <label for="ingredients" class="form-label">Składniki</label>
-        <input type="text" id="ingredients" name="Ingridents" class="form-input" required />
+        <div *ngFor="let ingredient of ingredients" class="form-check">
+          <input class="form-check-input" type="checkbox" [value]="ingredient.id" (change)="onIngredientChange($event, ingredient.id)" />
+          <label class="form-check-label">{{ ingredient.name }} ({{ ingredient.unit }})</label>
+          <input type="number" class="form-input" [value]="getIngredientQuantity(ingredient.id)" (input)="setIngredientQuantity(ingredient.id, $event)" placeholder="Quantity" *ngIf="isIngredientSelected(ingredient.id)" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="categories" class="form-label">Kategorie</label>
+        <div *ngFor="let category of categories" class="form-check">
+          <input class="form-check-input" type="checkbox" [value]="category.id" (change)="onCategoryChange($event, category.id)" />
+          <label class="form-check-label">{{ category.name }}</label>
+        </div>
       </div>
     </div>
     <div class="image-upload">
       <label for="recipe-image" class="image-upload-label">Dodaj Zdjęcie</label>
       <div class="image-preview">
-        <img loading="lazy" alt="Podgląd zdjęcia przepisu" src="https://cdn.builder.io/api/v1/image/assets%2Fadae120eb1ae4371a0bd579fad467915%2Fac7beb9945b642a2904bd0a2bbd0a9f9" class="preview-image" />
-        <input type="file" id="recipe-image" class="file-input" accept="image/*" />
+        <img [src]="imagePreview" class="preview-image" *ngIf="imagePreview" />
+        <input type="file" id="recipe-image" class="file-input" (change)="onImageChange($event)" />
       </div>
     </div>
     <button type="submit" class="submit-button">Dodaj</button>
   </form>
 </section>
-
