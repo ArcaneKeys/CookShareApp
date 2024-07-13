@@ -41,4 +41,12 @@ export class RecipeService {
       map(response => response.categories)
     );
   }
+
+  addFavorite(recipeId: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/favorites`, { recipeId });
+  }
+
+  removeFavorite(recipeId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/favorites/${recipeId}`);
+  }
 }

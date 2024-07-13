@@ -20,7 +20,8 @@ export class AddRecipeComponent implements OnInit {
     carbs: 0,
     fat: 0,
     ingredients: [],
-    categories: []
+    categories: [],
+    isFavorite: false
   };
   ingredients: Ingredient[] = [];
   categories: Category[] = [];
@@ -123,7 +124,8 @@ export class AddRecipeComponent implements OnInit {
       carbs: 0,
       fat: 0,
       ingredients: [],
-      categories: []
+      categories: [],
+      isFavorite: false
     };
     this.selectedIngredients = [];
     this.selectedCategories = [];

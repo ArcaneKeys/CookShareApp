@@ -1,0 +1,13 @@
+.btn-link {
+    color: white;
+  }
+  
+  .btn-link:hover {
+    color: gold;
+  }
+  
+  .fas.fa-star,
+  .far.fa-star {
+    font-size: 1.5em;
+  }
+  

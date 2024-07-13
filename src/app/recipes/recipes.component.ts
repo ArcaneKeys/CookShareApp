@@ -13,6 +13,10 @@ export class RecipesComponent implements OnInit {
   constructor(private recipeService: RecipeService) {}
 
   ngOnInit() {
+    this.loadRecipes();
+  }
+
+  loadRecipes() {
     this.recipeService.getRecipes().subscribe({
       next: recipes => this.recipes = recipes,
       error: err => console.error(err)
