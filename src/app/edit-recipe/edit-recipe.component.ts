@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeService } from '../recipe.service';
 import { Recipe, Ingredient, Category } from '../models/recipe.model';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'app-add-recipe',
-  templateUrl: './add-recipe.component.html',
-  styleUrls: ['./add-recipe.component.css']
+  selector: 'app-edit-recipe',
+  templateUrl: './edit-recipe.component.html',
+  styleUrls: ['./edit-recipe.component.css']
 })
-export class AddRecipeComponent implements OnInit {
+export class EditRecipeComponent implements OnInit {
   recipe: Recipe = {
     id: 0,
     name: '',
@@ -30,9 +31,26 @@ export class AddRecipeComponent implements OnInit {
   imagePreview: string | ArrayBuffer | null = null;
   alertMessage: string | null = null;
 
-  constructor(private recipeService: RecipeService, private router: Router) {}
+  constructor(private route: ActivatedRoute, private recipeService: RecipeService, private router: Router) {}
 
   ngOnInit() {
+    const id = +this.route.snapshot.paramMap.get('id')!;
+    this.recipeService.getRecipeById(id).subscribe({
+      next: recipe => {
+        this.recipe = recipe;
+        this.selectedIngredients = recipe.ingredients.map(ingredient => ({
+          ingredientId: ingredient.id,
+          quantity: ingredient.quantity
+        }));
+        this.selectedCategories = recipe.categories;
+        this.imagePreview = recipe.pictureUrl;
+      },
+      error: (err: HttpErrorResponse) => {
+        console.error('Failed to fetch recipe', err);
+        this.alertMessage = 'Failed to load the recipe. Please try again later.';
+      }
+    });
+
     this.recipeService.getIngredients().subscribe({
       next: ingredients => this.ingredients = ingredients,
       error: err => console.error(err)
@@ -91,6 +109,10 @@ export class AddRecipeComponent implements OnInit {
     return this.selectedIngredients.some(item => item.ingredientId === ingredientId);
   }
 
+  isCategorySelected(categoryId: number): boolean {
+    return this.selectedCategories.some(item => item.id === categoryId);
+  }
+
   onSubmit() {
     this.recipe.ingredients = this.selectedIngredients.map(item => ({
       ...this.ingredients.find(ingredient => ingredient.id === item.ingredientId),
@@ -99,10 +121,9 @@ export class AddRecipeComponent implements OnInit {
 
     this.recipe.categories = this.selectedCategories.map(category => category);
 
-    this.recipeService.addRecipe(this.recipe).subscribe({
+    this.recipeService.updateRecipe(this.recipe.id, this.recipe).subscribe({
       next: (recipe) => {
-        this.alertMessage = 'Recipe added successfully!';
-        this.resetForm();
+        this.alertMessage = 'Recipe updated successfully!';
         setTimeout(() => {
           this.alertMessage = null;
           this.router.navigate(['/recipes']);
@@ -110,25 +131,5 @@ export class AddRecipeComponent implements OnInit {
       },
       error: (err) => console.error(err)
     });
-  }
-
-  private resetForm() {
-    this.recipe = {
-      id: 0,
-      name: '',
-      instructions: '',
-      pictureUrl: '',
-      preparationTime: 0,
-      calories: 0,
-      protein: 0,
-      carbs: 0,
-      fat: 0,
-      ingredients: [],
-      categories: [],
-      isFavorite: false
-    };
-    this.selectedIngredients = [];
-    this.selectedCategories = [];
-    this.imagePreview = null;
   }
 }

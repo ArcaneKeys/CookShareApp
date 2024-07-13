@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,11 +9,11 @@ import { HomeComponent } from './home/home.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { CategoriesComponent } from './categories/categories.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecipeInfoComponent } from './recipe-info/recipe-info.component';
+import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
 
 @NgModule({
   declarations: [
@@ -22,16 +23,17 @@ import { RecipeInfoComponent } from './recipe-info/recipe-info.component';
     RecipesComponent,
     AddRecipeComponent,
     ShoppingListComponent,
-    CategoriesComponent,
     FavoritesComponent,
-    RecipeInfoComponent
+    RecipeInfoComponent,
+    EditRecipeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

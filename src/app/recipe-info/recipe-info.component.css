@@ -1,0 +1,46 @@
+/* Button Link Styling */
+.btn-link {
+  color: rgb(241, 58, 211);
+  text-decoration: none; /* Remove underline */
+  transition: color 0.3s ease-in-out; /* Smooth color transition */
+  font-weight: bold; /* Make the link bold */
+}
+
+  .btn-link:hover {
+    color: gold;
+    text-decoration: underline; /* Add underline on hover */
+  }
+
+/* Star Icon Styling */
+.fas.fa-star,
+.far.fa-star {
+  font-size: 1.5em;
+  color: #ffcc00; /* Star color */
+  margin: 0 5px; /* Add spacing between stars */
+  transition: transform 0.2s ease-in-out; /* Smooth scaling transition */
+}
+
+  .fas.fa-star:hover,
+  .far.fa-star:hover {
+    transform: scale(1.2); /* Slightly enlarge the star on hover */
+  }
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .fas.fa-star,
+  .far.fa-star {
+    font-size: 1.2em; /* Adjust font size for smaller screens */
+    margin: 0 3px; /* Adjust spacing for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .btn-link {
+    font-size: 0.9em; /* Adjust font size for smaller screens */
+  }
+
+  .fas.fa-star,
+  .far.fa-star {
+    font-size: 1em; /* Further adjust font size for smaller screens */
+  }
+}

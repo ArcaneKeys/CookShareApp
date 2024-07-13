@@ -1,0 +1,133 @@
+.recipe-form {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 1rem;
+}
+
+.recipe-title {
+  color: #333;
+  text-align: center;
+  font-size: 2.5rem; /* Use relative font size */
+  margin: 0.5rem 0; /* Add margin for better spacing */
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1.25rem; /* Use relative padding */
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.form-content {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  max-width: 90%; /* Adjust width for responsiveness */
+  width: 100%;
+  padding: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem; /* Use relative margin */
+}
+
+.form-label {
+  color: #555;
+  margin-bottom: 0.3125rem; /* Use relative margin */
+}
+
+.form-input,
+.form-textarea {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0.625rem 0.3125rem; /* Use relative padding */
+}
+
+.image-upload {
+  margin-top: 1.25rem; /* Use relative margin */
+  text-align: center;
+}
+
+.image-upload-label {
+  color: #555;
+  margin-bottom: 0.3125rem; /* Use relative margin */
+  font-size: 2.5rem; /* Use relative font size */
+}
+
+.image-preview {
+  margin-top: 0.625rem; /* Use relative margin */
+  max-width: 90%; /* Adjust width for responsiveness */
+  width: 100%;
+  position: relative;
+}
+
+.preview-image {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.file-input {
+  margin-top: 0.625rem; /* Use relative margin */
+}
+
+.submit-button {
+  background-color: rgba(126, 211, 33, 1);
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  height: 2.5rem; /* Use relative height */
+  text-align: center;
+  align-self: center;
+  width: 50%; /* Adjust width for responsiveness */
+  max-width: 12.5rem; /* Use max-width for better control */
+  padding: 0.625rem 0.9375rem; /* Use relative padding */
+  font: 300 2.5rem "sans-serif", sans-serif;
+  margin-top: 1.25rem; /* Add margin for spacing */
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Media Queries for responsiveness */
+@media (min-width: 600px) {
+  .form-content {
+    max-width: 500px; /* Increase max-width for larger screens */
+  }
+
+  .submit-button {
+    height: 3.125rem; /* Adjust button height for larger screens */
+    font-size: 2rem; /* Adjust font size for larger screens */
+  }
+}
+
+@media (min-width: 900px) {
+  .form-content {
+    max-width: 600px; /* Increase max-width for even larger screens */
+  }
+
+  .submit-button {
+    height: 3.75rem; /* Adjust button height for even larger screens */
+    font-size: 2.5rem; /* Adjust font size for even larger screens */
+  }
+}

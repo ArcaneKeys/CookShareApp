@@ -1,5 +1,78 @@
-li {
-    display: inline;
-    margin-right: 20px;
+/* Navbar Styling */
+.navbar {
+  background-color: #f8f9fa; /* Light background color */
+  border-bottom: 1px solid #ddd; /* Bottom border */
+  padding: 1rem 1.5rem; /* Padding for navbar */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
-  
+
+.navbar-brand {
+  font-size: 1.5rem; /* Larger font size for brand */
+  font-weight: bold; /* Bold font weight */
+  color: #007bff; /* Brand color */
+  text-decoration: none; /* Remove underline */
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+  .navbar-brand:hover {
+    color: #0056b3; /* Darker color on hover */
+  }
+
+.navbar-toggler {
+  background-color: #007bff; /* Background color for toggler */
+  border: none; /* Remove border */
+  color: #fff; /* White color for icon */
+  font-size: 1.25rem; /* Larger font size for icon */
+  padding: 0.5rem 1rem; /* Padding for toggler */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+  .navbar-toggler:hover {
+    background-color: #0056b3; /* Darker background on hover */
+  }
+
+.navbar-collapse {
+  justify-content: flex-end; /* Align items to the right */
+}
+
+.navbar-nav {
+  list-style: none; /* Remove list style */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+}
+
+.nav-item {
+  margin-left: 1rem; /* Space between nav items */
+}
+
+.nav-link {
+  font-size: 1rem; /* Font size for links */
+  color: #333; /* Link color */
+  text-decoration: none; /* Remove underline */
+  padding: 0.5rem 1rem; /* Padding for links */
+  transition: color 0.3s ease, background-color 0.3s ease; /* Smooth transitions */
+  border-radius: 5px; /* Rounded corners */
+}
+
+  .nav-link:hover {
+    color: #fff; /* White color on hover */
+    background-color: #007bff; /* Background color on hover */
+  }
+
+/* Media Queries for Responsiveness */
+@media (max-width: 992px) {
+  .navbar-nav {
+    flex-direction: column; /* Stack items vertically */
+    width: 100%; /* Full width for items */
+  }
+
+  .nav-item {
+    margin-left: 0; /* Remove left margin */
+    margin-bottom: 0.5rem; /* Add bottom margin */
+  }
+
+  .nav-link {
+    text-align: center; /* Center text */
+  }
+}

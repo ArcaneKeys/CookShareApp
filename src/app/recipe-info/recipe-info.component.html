@@ -1,11 +1,32 @@
 <div class="col mb-4">
-    <div class="card">
-      <img [src]="recipe.pictureUrl" [alt]="recipe.name" class="card-img-top">
-      <div class="card-body">
-        <h5 class="card-title">{{ recipe.name }}</h5>
-        <p class="card-text"><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
-        <p class="card-text"><strong>Instructions:</strong> {{ recipe.instructions }}</p>
-      </div>
+  <div class="card">
+    <button class="btn btn-link position-absolute top-0 end-0 m-2" (click)="toggleFavorite()">
+      <i [class]="recipe.isFavorite ? 'fas fa-star' : 'far fa-star'"></i>
+    </button>
+    <img [src]="recipe.pictureUrl" [alt]="recipe.name" class="card-img-top">
+    <div class="card-body">
+      <h5 class="card-title">{{ recipe.name }}</h5>
+      <p class="card-text"><strong>Ingredients:</strong></p>
+      <ul>
+        <li *ngFor="let ingredient of recipe.ingredients">
+          <img [src]="ingredient.iconUrl" alt="{{ ingredient.name }}" width="24" height="24">
+          {{ ingredient.name }}: {{ ingredient.quantity }} {{ ingredient.unit }}
+        </li>
+      </ul>
+      <p class="card-text"><strong>Instructions:</strong> {{ recipe.instructions }}</p>
+      <p class="card-text"><strong>Preparation Time:</strong> {{ recipe.preparationTime }} minutes</p>
+      <p class="card-text"><strong>Calories:</strong> {{ recipe.calories }}</p>
+      <p class="card-text"><strong>Protein:</strong> {{ recipe.protein }}g</p>
+      <p class="card-text"><strong>Carbs:</strong> {{ recipe.carbs }}g</p>
+      <p class="card-text"><strong>Fat:</strong> {{ recipe.fat }}g</p>
+      <p class="card-text"><strong>Categories:</strong></p>
+      <ul>
+        <li *ngFor="let category of recipe.categories">
+          {{ category.name }}
+        </li>
+      </ul>
+      <button class="btn btn-primary mt-3" (click)="generateShoppingList(recipe.id)">Generate Shopping List</button>
+      <button class="btn btn-secondary mt-3" [routerLink]="['/edit-recipe', recipe.id]">Edit</button>
     </div>
   </div>
-  
+</div>
