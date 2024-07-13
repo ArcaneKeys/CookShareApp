@@ -9,7 +9,6 @@ import { HomeComponent } from './home/home.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { CategoriesComponent } from './categories/categories.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -23,7 +22,6 @@ import { RecipeInfoComponent } from './recipe-info/recipe-info.component';
     RecipesComponent,
     AddRecipeComponent,
     ShoppingListComponent,
-    CategoriesComponent,
     FavoritesComponent,
     RecipeInfoComponent
   ],
