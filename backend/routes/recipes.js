@@ -28,7 +28,16 @@ module.exports = function(db) {
           if (err) {
             res.status(500).json({ error: err.message });
             return;
+        }
+        const queryFavorites = `
+          SELECT recipeId FROM Favorites
+        `;
+        db.all(queryFavorites, [], (err, favorites) => {
+          if (err) {
+              res.status(500).json({ error: err.message });
+              return;
           }
+          const favoriteRecipeIds = favorites.map(favorite => favorite.recipeId);
           const recipesWithDetails = recipes.map(recipe => {
             return {
               ...recipe,
@@ -42,14 +51,16 @@ module.exports = function(db) {
               categories: categories.filter(category => category.recipeId === recipe.id).map(category => ({
                 id: category.categoryId,
                 name: category.name
-              }))
+              })),
+              isFavorite: favoriteRecipeIds.includes(recipe.id)
             };
           });
           res.json({ recipes: recipesWithDetails });
         });
       });
     });
-  });
+  }) 
+});
 
   router.post('/', (req, res) => {
     const { name, instructions, pictureUrl, preparationTime, calories, protein, carbs, fat, ingredients, categories } = req.body;

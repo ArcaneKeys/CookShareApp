@@ -21,10 +21,12 @@ seedDatabase(db);
 const recipeRoutes = require('./routes/recipes')(db);
 const ingredientRoutes = require('./routes/ingredients')(db);
 const categoryRoutes = require('./routes/categories')(db);
+const favoriteRoutes = require('./routes/favorites')(db);
 
 app.use('/recipes', recipeRoutes);
 app.use('/ingredients', ingredientRoutes);
 app.use('/categories', categoryRoutes);
+app.use('/favorites', favoriteRoutes);
 
 // Start the server
 const PORT = 3000;

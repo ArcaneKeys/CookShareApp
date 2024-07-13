@@ -10,6 +10,7 @@ export interface Recipe {
     fat: number;
     ingredients: Ingredient[];
     categories: Category[];
+    isFavorite: boolean;
   }
   
   export interface Ingredient {

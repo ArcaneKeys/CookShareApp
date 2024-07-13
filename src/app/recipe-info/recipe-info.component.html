@@ -1,5 +1,8 @@
 <div class="col mb-4">
   <div class="card">
+    <button class="btn btn-link position-absolute top-0 end-0 m-2" (click)="toggleFavorite()">
+      <i [class]="recipe.isFavorite ? 'fas fa-star' : 'far fa-star'"></i>
+    </button>
     <img [src]="recipe.pictureUrl" [alt]="recipe.name" class="card-img-top">
     <div class="card-body">
       <h5 class="card-title">{{ recipe.name }}</h5>
