@@ -49,4 +49,11 @@ export class RecipeService {
   removeFavorite(recipeId: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/favorites/${recipeId}`);
   }
+
+  getRandomRecipes(count: number): Observable<Recipe[]> {
+    return this.http.get<{recipes: Recipe[]}>(`${this.apiUrl}/recipes/random/${count}`).pipe(
+      map(response => response.recipes)
+    );
+  }
+  
 }

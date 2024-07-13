@@ -62,6 +62,29 @@ module.exports = function(db) {
   }) 
 });
 
+router.get('/random/:count', (req, res) => {
+  const count = parseInt(req.params.count, 10);
+  db.all('SELECT * FROM Recipes', [], (err, recipes) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    const randomRecipes = [];
+    const usedIndices = new Set();
+    
+    while (randomRecipes.length < count && usedIndices.size < recipes.length) {
+      const randomIndex = Math.floor(Math.random() * recipes.length);
+      if (!usedIndices.has(randomIndex)) {
+        randomRecipes.push(recipes[randomIndex]);
+        usedIndices.add(randomIndex);
+      }
+    }
+
+    res.json({ recipes: randomRecipes });
+  });
+});
+
+
   router.post('/', (req, res) => {
     const { name, instructions, pictureUrl, preparationTime, calories, protein, carbs, fat, ingredients, categories } = req.body;
     const insertRecipe = db.prepare('INSERT INTO Recipes (name, instructions, pictureUrl, preparationTime, calories, protein, carbs, fat) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');

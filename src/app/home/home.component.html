@@ -1,2 +1,10 @@
-<h2>Home Page</h2>
-<p>Welcome to the Cooking App!</p>
+<div class="container">
+    <h1>Welcome to CookShareApp</h1>
+    <h2>Random Recipes</h2>
+    <div class="row">
+      <div class="col-md-4" *ngFor="let recipe of randomRecipes">
+        <app-recipe-info [recipe]="recipe"></app-recipe-info>
+      </div>
+    </div>
+  </div>
+  
