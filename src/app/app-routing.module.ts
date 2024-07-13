@@ -7,13 +7,12 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'recipes', component: RecipesComponent },
   { path: 'add-recipe', component: AddRecipeComponent },
   { path: 'shopping-list', component: ShoppingListComponent },
   { path: 'favorites', component: FavoritesComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', redirectTo: '/home', pathMatch: 'full' }
+  { path: '**', redirectTo: '/', pathMatch: 'full' }
 ];
 
 @NgModule({
