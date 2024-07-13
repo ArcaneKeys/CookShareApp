@@ -1,2 +1,33 @@
-<h2>Shopping List</h2>
-<p>Shopping list will be displayed here.</p>
+<div class="container" *ngIf="recipe">
+  <div class="row">
+    <div class="col-12">
+      <h1>Shopping List for {{ recipe.name }}</h1>
+      <div class="form-group">
+        <label for="servings" class="form-label">Servings</label>
+        <input
+          type="number"
+          id="servings"
+          class="form-input"
+          [(ngModel)]="servings"
+          name="servings"
+          min="1"
+          step="0.5"
+          (input)="updateServings($event)"
+        />
+      </div>
+      <ul class="list-group mt-3">
+        <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients">
+          <img [src]="ingredient.iconUrl" alt="{{ ingredient.name }}" width="24" height="24">
+          {{ ingredient.name }}: {{ (ingredient.quantity * servings).toFixed(2) }} {{ ingredient.unit }}
+        </li>
+      </ul>
+      <button class="btn btn-primary mt-3" (click)="generatePDF()">Zapisz listę zakupową</button>
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="!recipe && !errorMessage">
+  <p>Loading recipe...</p>
+</div>
+<div class="container" *ngIf="errorMessage">
+  <p>{{ errorMessage }}</p>
+</div>

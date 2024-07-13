@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { RecipeService } from '../recipe.service';
 import { Recipe } from '../models/recipe.model'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-info',
@@ -11,7 +12,7 @@ export class RecipeInfoComponent {
   @Input() recipe!: Recipe;
   @Output() favoriteChanged = new EventEmitter<void>();
 
-  constructor(private recipeService: RecipeService) {}
+  constructor(private recipeService: RecipeService, private router: Router) {}
 
   toggleFavorite() {
     if (this.recipe.isFavorite) {
@@ -31,5 +32,9 @@ export class RecipeInfoComponent {
         error: err => console.error(err)
       });
     }
+  }
+
+  generateShoppingList(recipeId: number) {
+    this.router.navigate(['/shopping-list', recipeId]);
   }
 }

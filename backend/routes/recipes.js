@@ -62,6 +62,70 @@ module.exports = function(db) {
   }) 
 });
 
+router.get('/:id', (req, res) => {
+  const { id } = req.params;
+  db.get('SELECT * FROM Recipes WHERE id = ?', [id], (err, recipe) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    if (!recipe) {
+      res.status(404).json({ error: 'Recipe not found' });
+      return;
+    }
+
+    const queryIngredients = `
+      SELECT ri.recipeId, ri.quantity, i.id as ingredientId, i.name, i.unit, i.iconUrl 
+      FROM RecipeIngredients ri
+      JOIN Ingredients i ON ri.ingredientId = i.id
+      WHERE ri.recipeId = ?
+    `;
+    db.all(queryIngredients, [id], (err, ingredients) => {
+      if (err) {
+        res.status(500).json({ error: err.message });
+        return;
+      }
+      const queryCategories = `
+        SELECT rc.recipeId, c.id as categoryId, c.name 
+        FROM RecipeCategories rc
+        JOIN Categories c ON rc.categoryId = c.id
+        WHERE rc.recipeId = ?
+      `;
+      db.all(queryCategories, [id], (err, categories) => {
+        if (err) {
+          res.status(500).json({ error: err.message });
+          return;
+        }
+        const queryFavorites = `
+          SELECT recipeId FROM Favorites WHERE recipeId = ?
+        `;
+        db.all(queryFavorites, [id], (err, favorites) => {
+          if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+          }
+          const isFavorite = favorites.length > 0;
+          res.json({
+            ...recipe,
+            ingredients: ingredients.map(ingredient => ({
+              id: ingredient.ingredientId,
+              name: ingredient.name,
+              quantity: ingredient.quantity,
+              unit: ingredient.unit,
+              iconUrl: ingredient.iconUrl
+            })),
+            categories: categories.map(category => ({
+              id: category.categoryId,
+              name: category.name
+            })),
+            isFavorite
+          });
+        });
+      });
+    });
+  });
+});
+
 router.get('/random/:count', (req, res) => {
   const count = parseInt(req.params.count, 10);
   db.all('SELECT * FROM Recipes', [], (err, recipes) => {
@@ -83,7 +147,6 @@ router.get('/random/:count', (req, res) => {
     res.json({ recipes: randomRecipes });
   });
 });
-
 
   router.post('/', (req, res) => {
     const { name, instructions, pictureUrl, preparationTime, calories, protein, carbs, fat, ingredients, categories } = req.body;
